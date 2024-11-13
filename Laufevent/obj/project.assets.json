@@ -452,11 +452,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Fabian\\Documents\\GitHub\\CSharp-API\\Laufevent\\Laufevent\\Laufevent.csproj",
+      "projectUniqueName": "C:\\Users\\Fabian\\Documents\\GitHub\\Laufevent\\Laufevent\\Laufevent.csproj",
       "projectName": "Laufevent",
-      "projectPath": "C:\\Users\\Fabian\\Documents\\GitHub\\CSharp-API\\Laufevent\\Laufevent\\Laufevent.csproj",
+      "projectPath": "C:\\Users\\Fabian\\Documents\\GitHub\\Laufevent\\Laufevent\\Laufevent.csproj",
       "packagesPath": "C:\\Users\\Fabian\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Fabian\\Documents\\GitHub\\CSharp-API\\Laufevent\\Laufevent\\obj\\",
+      "outputPath": "C:\\Users\\Fabian\\Documents\\GitHub\\Laufevent\\Laufevent\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Fabian\\AppData\\Roaming\\NuGet\\NuGet.Config",
