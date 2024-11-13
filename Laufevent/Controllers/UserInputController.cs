@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-using Laufevent; 
 
 namespace Laufevent.Controllers
 {
@@ -31,6 +29,7 @@ namespace Laufevent.Controllers
                         command.Parameters.AddWithValue("@Nachname", userInfo.Nachname);
                         command.Parameters.AddWithValue("@Runden", userInfo.Runden);
                         command.Parameters.AddWithValue("@Bestzeit", userInfo.Bestzeit);
+
 
                         int rowsAffected = command.ExecuteNonQuery();
                         return Ok($"Data inserted successfully. Rows affected: {rowsAffected}");
