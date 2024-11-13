@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Laufevent; 
 
 namespace Laufevent.Controllers
 {
@@ -8,7 +9,6 @@ namespace Laufevent.Controllers
     [ApiController]
     public class UserInformationController : ControllerBase
     {
-        private readonly string _connectionString = @"Server=DESKTOP-N214O1C\SQLLAUFEVENT;Database=Laufevent;Trusted_Connection=True;";
         [HttpPost]
         public IActionResult InsertUserInformation([FromBody] UserInformation userInfo)
         {
@@ -19,7 +19,7 @@ namespace Laufevent.Controllers
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(_connectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString.Value))
                 {
                     connection.Open();
                     string query = "INSERT INTO Userinformation (Vorname, Nachname, Runden, Bestzeit) " +
@@ -47,5 +47,4 @@ namespace Laufevent.Controllers
             }
         }
     }
-
 }
