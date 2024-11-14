@@ -1,10 +1,10 @@
 namespace Laufevent
 {
-    public class UserInformation
+    public class CreateUservariables_Vorname_Nachname
     {
         public string Vorname { get; set; }
         public string Nachname { get; set; }
-        public int Runden { get; set; }
-        public string Bestzeit { get; set; }
+        public string Organisation { get; set; }
     }
 }
+
