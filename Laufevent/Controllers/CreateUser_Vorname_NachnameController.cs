@@ -3,14 +3,15 @@ using System.Data.SqlClient;
 
 namespace Laufevent.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("create user that has no educard and no class")]
     [ApiController]
     public class CreateUser_Vorname_NachnameController : ControllerBase
     {
         private int Runden = 0;
         private string Bestzeit = "00:00:00";
         private int? Educardnr = null; 
-        private string Klasse = null; 
+        private string Klasse = null;
+        private bool Fruehstarter = false;
 
         [HttpPost]
         public IActionResult InsertUserInformation([FromBody] CreateUservariables_Vorname_Nachname userInfo)
@@ -26,8 +27,8 @@ namespace Laufevent.Controllers
                 {
                     connection.Open();
                     string query =
-                        "INSERT INTO Userinformation (Vorname, Nachname, Educardnr, Klasse, Organisation, Runden, Bestzeit) " +
-                        "VALUES (@Vorname, @Nachname, @Educardnr, @Klasse, @Organisation, @Runden, @Bestzeit)";
+                        "INSERT INTO Userinformation (Vorname, Nachname, Educardnr, Klasse, Organisation, Runden, Bestzeit, Fruehstarter) " +
+                        "VALUES (@Vorname, @Nachname, @Educardnr, @Klasse, @Organisation, @Runden, @Bestzeit, @Fruehstarter)";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -37,8 +38,8 @@ namespace Laufevent.Controllers
                         command.Parameters.AddWithValue("@Bestzeit", Bestzeit);
                         command.Parameters.AddWithValue("@Educardnr", DBNull.Value);
                         command.Parameters.AddWithValue("@Klasse", DBNull.Value);
-
-                        // Check for null or empty Organisation
+                        command.Parameters.AddWithValue("@Fruehstarter", DBNull.Value);
+                        
                         if (!string.IsNullOrEmpty(userInfo.Organisation))
                         {
                             command.Parameters.AddWithValue("@Organisation", userInfo.Organisation);

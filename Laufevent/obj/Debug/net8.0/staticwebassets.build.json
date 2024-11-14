@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "4xInhyjizpAhJubFRU/Z2IEi7N/inpIilz9CHU4G/Uk=",
+  "Hash": "pxvBXp34R937vk5VZ/fpg3u0SwNfa6tP5yupcKHP9eg=",
   "Source": "Laufevent",
   "BasePath": "_content/Laufevent",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }
