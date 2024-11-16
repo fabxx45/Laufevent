@@ -1,21 +1,20 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Laufevent.Controllers;
 
-[Route("create user that has no educard and no class")]
+[Route("create user that has no educard")]
 [ApiController]
-public class CreateUserVornameNachnameController : ControllerBase
+public class CreateUserVorNachOrgKLasController : ControllerBase
 {
     private readonly string Bestzeit = "00:00:00";
     private int? Educardnr = null;
     private bool Fruehstarter = false;
-    private string Klasse = null;
     private readonly int Runden = 0;
 
     [HttpPost]
-    public IActionResult InsertUserInformation([FromBody] CreateUserVariablesVornameNachname userInfo)
+    public IActionResult InsertUserInformation([FromBody] CreateUserVariablesVorNachOrgKlas userInfo)
     {
         try
         {
@@ -33,7 +32,7 @@ public class CreateUserVornameNachnameController : ControllerBase
                     command.Parameters.AddWithValue("@Runden", Runden);
                     command.Parameters.AddWithValue("@Bestzeit", Bestzeit);
                     command.Parameters.AddWithValue("@Educardnr", DBNull.Value);
-                    command.Parameters.AddWithValue("@Klasse", DBNull.Value);
+                    command.Parameters.AddWithValue("@Klasse", userInfo.Klasse);
                     command.Parameters.AddWithValue("@Fruehstarter", DBNull.Value);
                     command.Parameters.AddWithValue("@Organisation", userInfo.Organisation); 
                     var rowsAffected = command.ExecuteNonQuery();
