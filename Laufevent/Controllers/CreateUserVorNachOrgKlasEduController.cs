@@ -8,10 +8,9 @@ namespace Laufevent.Controllers;
 [ApiController]
 public class CreateUserVorNachOrgKlasEduController : ControllerBase
 {
-    private readonly string Bestzeit = "00:00:00";
-    private bool Fruehstarter = false;
-    private readonly int Runden = 0;
-
+    private readonly string fastest_lap = "00:00:00";
+    private bool early_starter = false;
+    private readonly int laps = 0;
     [HttpPost]
     public IActionResult InsertUserInformation([FromBody] CreateUserVariablesVorNachOrgKlasEdu userInfo)
     {
@@ -21,19 +20,19 @@ public class CreateUserVorNachOrgKlasEduController : ControllerBase
             {
                 connection.Open();
                 var query =
-                    "INSERT INTO Userinformation (Vorname, Nachname, Educardnr, Klasse, Organisation, Runden, Bestzeit, Fruehstarter) " +
-                    "VALUES (@Vorname, @Nachname, @Educardnr, @Klasse, @Organisation, @Runden, @Bestzeit, @Fruehstarter)";
+                    "INSERT INTO Userinformation (firstname, lastname, educard_number, school_class, organisation, laps, fastest_lap, early_starter) " +
+                    "VALUES (@firstname, @lastname, @educard_number, @school_class, @organisation, @laps, @fastest_lap, @early_starter)";
 
                 using (var command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Vorname", userInfo.Vorname);
-                    command.Parameters.AddWithValue("@Nachname", userInfo.Nachname);
-                    command.Parameters.AddWithValue("@Runden", Runden);
-                    command.Parameters.AddWithValue("@Bestzeit", Bestzeit);
-                    command.Parameters.AddWithValue("@Educardnr", userInfo.Educard);
-                    command.Parameters.AddWithValue("@Klasse", userInfo.Klasse);
+                    command.Parameters.AddWithValue("@Vorname", userInfo.firstname);
+                    command.Parameters.AddWithValue("@Nachname", userInfo.lastname);
+                    command.Parameters.AddWithValue("@Runden", laps);
+                    command.Parameters.AddWithValue("@Bestzeit", fastest_lap);
+                    command.Parameters.AddWithValue("@Educardnr", userInfo.educard);
+                    command.Parameters.AddWithValue("@Klasse", userInfo.school_class);
                     command.Parameters.AddWithValue("@Fruehstarter", DBNull.Value);
-                    command.Parameters.AddWithValue("@Organisation", userInfo.Organisation); 
+                    command.Parameters.AddWithValue("@Organisation", userInfo.organisation); 
                     var rowsAffected = command.ExecuteNonQuery();
                     return Ok($"Data inserted successfully. Rows affected: {rowsAffected}");
                 }

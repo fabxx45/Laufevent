@@ -6,13 +6,13 @@ namespace Laufevent
     public class CreateUserVariablesVorNachOrg
     {
         [Required] [DefaultValue("")] 
-        public string Vorname { get; set; }
+        public string firstname { get; set; }
         
         [Required][DefaultValue("")]   
-         public string Nachname { get; set; } 
+         public string lastname { get; set; } 
         
         [Required][DefaultValue("")] 
-         public string Organisation { get; set; }
+         public string organisation { get; set; }
         
 
     }
