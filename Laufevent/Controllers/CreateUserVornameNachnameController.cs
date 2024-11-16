@@ -35,7 +35,7 @@ public class CreateUserVornameNachnameController : ControllerBase
                     command.Parameters.AddWithValue("@Educardnr", DBNull.Value);
                     command.Parameters.AddWithValue("@Klasse", DBNull.Value);
                     command.Parameters.AddWithValue("@Fruehstarter", DBNull.Value);
-                    command.Parameters.AddWithValue("@Organisation", userInfo.Organisation); 
+                    command.Parameters.AddWithValue("@Organisation", userInfo.Org); 
                     var rowsAffected = command.ExecuteNonQuery();
                     return Ok($"Data inserted successfully. Rows affected: {rowsAffected}");
                 }
