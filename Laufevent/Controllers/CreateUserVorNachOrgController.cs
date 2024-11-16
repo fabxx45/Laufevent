@@ -24,18 +24,19 @@ public class CreateUserVorNachOrgController : ControllerBase
                 connection.Open();
                 var query =
                     "INSERT INTO Userinformation (firstname, lastname, educard_number, school_class, organisation, laps, fastest_lap, early_starter) " +
-                    "VALUES (@firstname, @lastname, @educard_number, @school_class, @organisation, @laps, @fastest_lap, @early_starter)";
+                    "VALUES (@firstname, @l
+                    astname, @educard_number, @school_class, @organisation, @laps, @fastest_lap, @early_starter)";
 
                 using (var command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@firstname", userInfo.firstname);
-                    command.Parameters.AddWithValue("@lastname", userInfo.lastname);
-                    command.Parameters.AddWithValue("@laps", laps);
-                    command.Parameters.AddWithValue("@fastest_lap", fastest_lap);
-                    command.Parameters.AddWithValue("@educard_number", DBNull.Value);
-                    command.Parameters.AddWithValue("@school_class", DBNull.Value);
-                    command.Parameters.AddWithValue("@early_starter", DBNull.Value);
-                    command.Parameters.AddWithValue("organisation", userInfo.organisation); 
+                    command.Parameters.AddWithValue("@Vorname", userInfo.firstname);
+                    command.Parameters.AddWithValue("@Nachname", userInfo.lastname);
+                    command.Parameters.AddWithValue("@Runden", laps);
+                    command.Parameters.AddWithValue("@Bestzeit", fastest_lap);
+                    command.Parameters.AddWithValue("@Educardnr", DBNull.Value);
+                    command.Parameters.AddWithValue("@Klasse", DBNull.Value);
+                    command.Parameters.AddWithValue("@Fruehstarter", DBNull.Value);
+                    command.Parameters.AddWithValue("@Organisation", userInfo.organisation); 
                     var rowsAffected = command.ExecuteNonQuery();
                     return Ok($"Data inserted successfully. Rows affected: {rowsAffected}");
                 }
