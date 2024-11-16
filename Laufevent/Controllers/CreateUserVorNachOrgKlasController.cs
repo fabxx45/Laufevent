@@ -27,14 +27,14 @@ public class CreateUserVorNachOrgKLasController : ControllerBase
 
                 using (var command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Vorname", userInfo.firstname);
-                    command.Parameters.AddWithValue("@Nachname", userInfo.lastname);
-                    command.Parameters.AddWithValue("@Runden", laps);
-                    command.Parameters.AddWithValue("@Bestzeit", fastest_lap);
-                    command.Parameters.AddWithValue("@Educardnr", DBNull.Value);
-                    command.Parameters.AddWithValue("@Klasse", userInfo.school_class);
-                    command.Parameters.AddWithValue("@Fruehstarter", DBNull.Value);
-                    command.Parameters.AddWithValue("@Organisation", userInfo.organisation); 
+                    command.Parameters.AddWithValue("@firstname", userInfo.firstname);
+                    command.Parameters.AddWithValue("@lastname", userInfo.lastname);
+                    command.Parameters.AddWithValue("@laps", laps);
+                    command.Parameters.AddWithValue("@fastest_lap", fastest_lap);
+                    command.Parameters.AddWithValue("@educard_number", DBNull.Value);
+                    command.Parameters.AddWithValue("@school_class", userInfo.school_class);
+                    command.Parameters.AddWithValue("@early_starter", DBNull.Value);
+                    command.Parameters.AddWithValue("organisation", userInfo.organisation); 
                     var rowsAffected = command.ExecuteNonQuery();
                     return Ok($"Data inserted successfully. Rows affected: {rowsAffected}");
                 }
