@@ -6,7 +6,7 @@ namespace Laufevent.Controllers;
 
 [Route("create user that has no educard and no class")]
 [ApiController]
-public class CreateUserVorNachOrgController : ControllerBase
+public class CreateUserVornameNachnameController : ControllerBase
 {
     private readonly string Bestzeit = "00:00:00";
     private int? Educardnr = null;
@@ -35,7 +35,7 @@ public class CreateUserVorNachOrgController : ControllerBase
                     command.Parameters.AddWithValue("@Educardnr", DBNull.Value);
                     command.Parameters.AddWithValue("@Klasse", DBNull.Value);
                     command.Parameters.AddWithValue("@Fruehstarter", DBNull.Value);
-                    command.Parameters.AddWithValue("@Organisation", userInfo.Organisation); 
+                    command.Parameters.AddWithValue("@Organisation", userInfo.Org); 
                     var rowsAffected = command.ExecuteNonQuery();
                     return Ok($"Data inserted successfully. Rows affected: {rowsAffected}");
                 }
