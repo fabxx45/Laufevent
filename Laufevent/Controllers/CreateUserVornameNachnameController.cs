@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,7 +6,7 @@ namespace Laufevent.Controllers;
 
 [Route("create user that has no educard and no class")]
 [ApiController]
-public class CreateUser_Vorname_NachnameController : ControllerBase
+public class CreateUserVornameNachnameController : ControllerBase
 {
     private readonly string Bestzeit = "00:00:00";
     private int? Educardnr = null;
@@ -14,7 +15,7 @@ public class CreateUser_Vorname_NachnameController : ControllerBase
     private readonly int Runden = 0;
 
     [HttpPost]
-    public IActionResult InsertUserInformation([FromBody] CreateUservariables_Vorname_Nachname userInfo)
+    public IActionResult InsertUserInformation([FromBody] CreateUserVariablesVornameNachname userInfo)
     {
         try
         {
@@ -34,6 +35,7 @@ public class CreateUser_Vorname_NachnameController : ControllerBase
                     command.Parameters.AddWithValue("@Educardnr", DBNull.Value);
                     command.Parameters.AddWithValue("@Klasse", DBNull.Value);
                     command.Parameters.AddWithValue("@Fruehstarter", DBNull.Value);
+                    command.Parameters.AddWithValue("@Organisation", userInfo.Organisation);
                     var rowsAffected = command.ExecuteNonQuery();
                     return Ok($"Data inserted successfully. Rows affected: {rowsAffected}");
                 }
