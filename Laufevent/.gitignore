@@ -1,5 +1,5 @@
 ConnectionString.cs
 Laufevent/bin/Debug/net8.0/Laufevent.dll
-Laufevent/bin/
-Laufevent/obj/
-Laufevent/idea/
+bin/
+obj/
+idea/
