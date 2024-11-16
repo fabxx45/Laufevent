@@ -24,8 +24,7 @@ public class CreateUserVorNachOrgController : ControllerBase
                 connection.Open();
                 var query =
                     "INSERT INTO Userinformation (firstname, lastname, educard_number, school_class, organisation, laps, fastest_lap, early_starter) " +
-                    "VALUES (@firstname, @l
-                    astname, @educard_number, @school_class, @organisation, @laps, @fastest_lap, @early_starter)";
+                    "VALUES (@firstname, @lastname, @educard_number, @school_class, @organisation, @laps, @fastest_lap, @early_starter)";
 
                 using (var command = new SqlCommand(query, connection))
                 {
