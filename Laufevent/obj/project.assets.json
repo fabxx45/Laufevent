@@ -775,23 +775,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Fabian\\.nuget\\packages\\": {},
+    "C:\\Users\\manue\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Fabian\\Documents\\GitHub\\Laufevent\\Laufevent\\Laufevent.csproj",
+      "projectUniqueName": "C:\\Users\\manue\\OneDrive - Schulzentrum Ybbs\\Schui\\3CHIT\\Laufevent\\Laufevent\\Laufevent\\Laufevent.csproj",
       "projectName": "Laufevent",
-      "projectPath": "C:\\Users\\Fabian\\Documents\\GitHub\\Laufevent\\Laufevent\\Laufevent.csproj",
-      "packagesPath": "C:\\Users\\Fabian\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Fabian\\Documents\\GitHub\\Laufevent\\Laufevent\\obj\\",
+      "projectPath": "C:\\Users\\manue\\OneDrive - Schulzentrum Ybbs\\Schui\\3CHIT\\Laufevent\\Laufevent\\Laufevent\\Laufevent.csproj",
+      "packagesPath": "C:\\Users\\manue\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\manue\\OneDrive - Schulzentrum Ybbs\\Schui\\3CHIT\\Laufevent\\Laufevent\\Laufevent\\obj\\",
       "projectStyle": "PackageReference",
+      "UsingMicrosoftNETSdk": false,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Fabian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\manue\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
