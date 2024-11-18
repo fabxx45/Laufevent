@@ -72,9 +72,6 @@ C:\Users\Fabian\Documents\GitHub\Laufevent\Laufevent\obj\Debug\net8.0\refint\Lau
 C:\Users\Fabian\Documents\GitHub\Laufevent\Laufevent\obj\Debug\net8.0\Laufevent.pdb
 C:\Users\Fabian\Documents\GitHub\Laufevent\Laufevent\obj\Debug\net8.0\Laufevent.genruntimeconfig.cache
 C:\Users\Fabian\Documents\GitHub\Laufevent\Laufevent\obj\Debug\net8.0\ref\Laufevent.dll
-C:\Users\Fabian\Documents\GitHub\Laufevent\Laufevent\bin\Debug\net8.0\Laufevent.staticwebassets.endpoints.json
-C:\Users\Fabian\Documents\GitHub\Laufevent\Laufevent\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\Fabian\Documents\GitHub\Laufevent\Laufevent\obj\Debug\net8.0\staticwebassets\msbuild.Laufevent.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 C:\Users\Fabian\Documents\GitHub\Laufevent\Laufevent\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll
 C:\Users\manue\OneDrive - Schulzentrum Ybbs\Schui\3CHIT\Laufevent\Laufevent\Laufevent\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\manue\OneDrive - Schulzentrum Ybbs\Schui\3CHIT\Laufevent\Laufevent\Laufevent\bin\Debug\net8.0\appsettings.json

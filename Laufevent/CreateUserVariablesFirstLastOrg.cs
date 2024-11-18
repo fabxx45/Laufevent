@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Laufevent
 {
-    public class CreateUserVariablesVorNachOrg
+    public class CreateUserVariablesFirstLastOrg
     {
         [Required] [DefaultValue("")] 
         public string firstname { get; set; }

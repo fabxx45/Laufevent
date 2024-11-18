@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 namespace Laufevent;
 
-public class CreateUserVariablesVorNachOrgKlasEdu
+public class CreateUserVariablesFirstLastOrgClass
 {
     [Required] [DefaultValue("")] 
     public string firstname { get; set; }
@@ -16,6 +16,4 @@ public class CreateUserVariablesVorNachOrgKlasEdu
     [Required][DefaultValue("")] 
     public string school_class { get; set; }
     
-    [Required][DefaultValue("")] 
-    public int educard { get; set; }
 }
