@@ -6,7 +6,7 @@ namespace Laufevent.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CompleteRound : ControllerBase
+public class CompleteRoundController : ControllerBase
 {
     [HttpPost]
     public IActionResult InsertUserInformation([FromBody] CompleteRoundVariables userInfo)
