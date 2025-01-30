@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a1061f9-060f-461d-bcfa-9e6b00fa5418" name="Changes" comment="pray">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laufevent_Website/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laufevent_Website/.idea/Laufevent_Website.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laufevent_Website/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Laufevent_Website/.idea/vcs.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="7a1061f9-060f-461d-bcfa-9e6b00fa5418" name="Changes" comment="pray" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,6 +59,18 @@
       <recent name="C:\Users\Fabian\Documents\GitHub\Laufevent\Laufevent_CSharp" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/laufevent_website/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -87,7 +91,7 @@
       <workItem from="1738223094784" duration="31000" />
       <workItem from="1738230841725" duration="1134000" />
       <workItem from="1738232128868" duration="430000" />
-      <workItem from="1738232599485" duration="9000" />
+      <workItem from="1738232599485" duration="126000" />
     </task>
     <task id="LOCAL-00001" summary="pray">
       <option name="closed" value="true" />
