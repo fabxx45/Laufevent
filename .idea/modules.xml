@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Laufevent_CSharp/.idea/Laufevent_CSharp.iml" filepath="$PROJECT_DIR$/Laufevent_CSharp/.idea/Laufevent_CSharp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/laufevent_website.iml" filepath="$PROJECT_DIR$/laufevent_website.iml" />
     </modules>
   </component>
 </project>
