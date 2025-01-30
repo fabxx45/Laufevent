@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7a1061f9-060f-461d-bcfa-9e6b00fa5418" name="Changes" comment="pray">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laufevent_website/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/laufevent_website/app/css/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laufevent_website/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/laufevent_website/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laufevent_website/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/laufevent_website/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laufevent_website/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/laufevent_website/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,11 +57,13 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "ts.external.directory.path": "C:\\Users\\Fabian\\Documents\\GitHub\\Laufevent\\laufevent_website\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Fabian\Documents\GitHub\Laufevent\laufevent_website\app\css" />
       <recent name="C:\Users\Fabian\Documents\GitHub\Laufevent" />
       <recent name="C:\Users\Fabian\Documents\GitHub\Laufevent\Laufevent_CSharp" />
     </key>
@@ -77,8 +83,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
       </set>
     </attachedChunks>
   </component>
@@ -96,6 +101,7 @@
       <workItem from="1738230841725" duration="1134000" />
       <workItem from="1738232128868" duration="430000" />
       <workItem from="1738232599485" duration="126000" />
+      <workItem from="1738234270643" duration="1714000" />
     </task>
     <task id="LOCAL-00001" summary="pray">
       <option name="closed" value="true" />
