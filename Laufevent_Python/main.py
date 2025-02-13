@@ -1,8 +1,8 @@
 """
 API Data Input Form
 
-This script provides a graphical user interface (GUI) for interacting with a REST API. 
-The GUI allows users to create, delete, and update user records by sending HTTP requests 
+This script provides a graphical user interface (GUI) for interacting with a REST API.
+The GUI allows users to create, delete, and update user records by sending HTTP requests
 to the API. The interface is built using the `tkinter` library.
 
 Modules:
@@ -16,8 +16,9 @@ Functions:
     - create_user(): Sends a POST request to create a new user.
     - delete_user_by_id(): Sends a DELETE request to delete a user by ID.
     - update_user_by_id(): Sends a PUT request to update a user by ID.
-    - load_user_data(): Sends a GET request to load user data by ID.
+    - load_user_data(): Sends a GET request to load user data by ID or EduCard.
     - update_ui(): Updates the UI based on the selected operation.
+    - clear_all_inputs(): Clears all input fields in the GUI.
 
 Classes:
     - None
@@ -27,20 +28,23 @@ Variables:
     - operation_var: Tracks the selected operation (create, delete, update).
     - id_label: Displays the last created user ID.
     - id_entry: Entry field for user ID.
-    - firstname_entry, lastname_entry, org_entry, class_entry, edu_card_entry: 
+    - firstname_entry, lastname_entry, org_entry, class_entry, edu_card_entry:
       Entry fields for user details.
     - load_button: Button to load user data.
     - submit_button: Button to submit the form.
+    - clear_button: Button to clear all input fields.
 
 Usage:
-    Run the script to launch the GUI. Select an operation (create, delete, update) 
+    Run the script to launch the GUI. Select an operation (create, delete, update)
     and fill in the necessary fields. Click "Absenden" to send the data to the API.
+    Click "Clear All" to reset all input fields.
 """
 
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 import requests
+
 
 def send_to_api():
     """
@@ -56,11 +60,12 @@ def send_to_api():
     elif operation_var.get() == 3:  # Update User
         update_user_by_id()
 
+
 def create_user():
     """
     Sends a POST request to create a new user.
 
-    Collects data from the entry fields, constructs a JSON payload, and sends it 
+    Collects data from the entry fields, constructs a JSON payload, and sends it
     to the appropriate API endpoint based on the presence of optional fields.
     """
     class_value = class_entry.get()
@@ -125,11 +130,12 @@ def delete_user_by_id():
     except Exception as e:
         messagebox.showerror("Fehler", str(e))
 
+
 def update_user_by_id():
     """
     Sends a PUT request to update a user by ID.
 
-    Collects the user ID and updated data from the entry fields, constructs a JSON payload, 
+    Collects the user ID and updated data from the entry fields, constructs a JSON payload,
     and sends it to the API.
     """
     user_id = id_entry.get()
@@ -157,58 +163,93 @@ def update_user_by_id():
     except Exception as e:
         messagebox.showerror("Fehler", str(e))
 
+
 def load_user_data():
     """
-    Sends a GET request to load user data by ID.
-
-    Collects the user ID from the entry field, sends a GET request to the API, 
-    and populates the entry fields with the retrieved data.
+    Sends a GET request to load user data by EduCard or ID.
     """
-    user_id = id_entry.get()
-    if not user_id:
-        messagebox.showwarning("Warnung", "Bitte geben Sie eine ID ein.")
+    edu_card_number = edu_card_entry.get().strip()
+    id_number = id_entry.get().strip()
+
+    # Ensure at least one input is provided
+    if not edu_card_number and not id_number:
+        messagebox.showerror("Fehler", "Bitte geben Sie eine ID oder eine EduCard-Nummer ein.")
         return
 
-    url = f'https://192.168.68.116:44320/api/ReadUserID?id={user_id}'
+    # Ensure only one input is provided
+    if edu_card_number and id_number:
+        messagebox.showerror("Fehler", "Du kannst nur nach einem Parameter suchen (ID oder EduCard).")
+        return
+
+    url = ''
+    if edu_card_number:
+        try:
+            edu_card_number = float(edu_card_number)  # Ensure valid number
+            url = f'https://192.168.68.116:44320/api/ReadUserEdu?educardNumber={edu_card_number}'
+        except ValueError:
+            messagebox.showerror("Fehler", "Ungültige EduCard-Nummer.")
+            return
+    elif id_number:
+        try:
+            id_number = int(id_number)  # Ensure valid integer
+            url = f'https://192.168.68.116:44320/api/ReadUserID?id={id_number}'
+        except ValueError:
+            messagebox.showerror("Fehler", "Ungültige Benutzer-ID.")
+            return
+
     headers = {'Content-Type': 'application/json'}
 
     try:
         response = requests.get(url, headers=headers, verify=False)
+
         if response.status_code == 200:
             user_data = response.json()
 
-            firstname_value = user_data.get('firstName')
-            lastname_value = user_data.get('lastName')
-            org_value = user_data.get('organisation')
-            class_value = user_data.get('schoolClass')
-            edu_card_value = user_data.get('eduCardNumber')
+            if not user_data or user_data == {}:
+                messagebox.showwarning("Warnung", "Keine Daten gefunden.")
+                return
+
+            # Helper function to replace {} with an empty string
+            def clean_value(value):
+                return "" if value == {} else value
+
+            # Populate fields
+            id_entry.delete(0, tk.END)
+            id_entry.insert(0, str(clean_value(user_data.get('id', ''))))  # ID field updated
 
             firstname_entry.delete(0, tk.END)
-            firstname_entry.insert(0, '' if firstname_value in [None, {}] else firstname_value)
+            firstname_entry.insert(0, clean_value(user_data.get('firstName', '')))
 
             lastname_entry.delete(0, tk.END)
-            lastname_entry.insert(0, '' if lastname_value in [None, {}] else lastname_value)
+            lastname_entry.insert(0, clean_value(user_data.get('lastName', '')))
 
             org_entry.delete(0, tk.END)
-            org_entry.insert(0, '' if org_value in [None, {}] else org_value)
+            org_entry.insert(0, clean_value(user_data.get('organisation', '')))
 
             class_entry.delete(0, tk.END)
-            class_entry.insert(0, '' if class_value in [None, {}] else class_value)
+            class_entry.insert(0, clean_value(user_data.get('schoolClass', '')))
 
             edu_card_entry.delete(0, tk.END)
-            edu_card_entry.insert(0, '' if edu_card_value in [None, {}] else edu_card_value)
+            edu_card_entry.insert(0, str(clean_value(user_data.get('eduCardNumber', ''))))
 
             messagebox.showinfo("Erfolg", "Daten erfolgreich geladen!")
+        elif response.status_code == 400:
+            messagebox.showerror("Fehler", "Ungültige Anfrage. Bitte überprüfen Sie die Eingabe.")
         else:
             messagebox.showerror("Fehler", f"Fehler: {response.status_code}\n{response.text}")
+
     except Exception as e:
         messagebox.showerror("Fehler", str(e))
+
+
+
+
 
 def update_ui():
     """
     Updates the UI based on the selected operation.
 
-    Shows or hides entry fields and buttons depending on whether the user is creating, 
+    Shows or hides entry fields and buttons depending on whether the user is creating,
     deleting, or updating a user.
     """
     if operation_var.get() == 1:  # Create User
@@ -253,6 +294,20 @@ def update_ui():
         edu_card_label.grid()
         edu_card_entry.grid()
         load_button.grid()  # Show the Load button
+
+
+def clear_all_inputs():
+    """
+    Clears all input fields in the GUI.
+    """
+    id_entry.delete(0, tk.END)
+    firstname_entry.delete(0, tk.END)
+    lastname_entry.delete(0, tk.END)
+    org_entry.delete(0, tk.END)
+    class_entry.delete(0, tk.END)
+    edu_card_entry.delete(0, tk.END)
+    id_label.config(text="Letzte erstellte ID: Keine")
+
 
 # Main application window
 root = tk.Tk()
@@ -310,14 +365,20 @@ ttk.Radiobutton(root, text="Benutzer erstellen", variable=operation_var, value=1
 ttk.Radiobutton(root, text="Benutzer löschen", variable=operation_var, value=2, style='My.TButton', command=update_ui).grid(row=9, column=1, padx=5, pady=5)
 ttk.Radiobutton(root, text="Benutzer aktualisieren", variable=operation_var, value=3, style='My.TButton', command=update_ui).grid(row=9, column=2, padx=5, pady=5)
 
+
 # Submit button to send data to the API
 submit_button = ttk.Button(root, text="Absenden", command=send_to_api)
-submit_button.grid(row=10, column=0, columnspan=3, pady=10)
+submit_button.grid(row=10, column=1, padx=5, pady=10)
 
 # Load button to load user data
 load_button = ttk.Button(root, text="Laden", command=load_user_data)
-load_button.grid(row=10, column=0, columnspan=2, pady=10)
-load_button.grid_remove()
+load_button.grid(row=10, column=2, padx=5, pady=10)
+load_button.grid_remove()  # Initially hidden
+
+# Clear All button to reset all input fields
+clear_button = ttk.Button(root, text="Clear All", command=clear_all_inputs)
+clear_button.grid(row=10, column=0, padx=5, pady=10)
+
 
 # Initialize the UI based on the selected operation
 update_ui()

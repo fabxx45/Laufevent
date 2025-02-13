@@ -19,7 +19,7 @@ namespace Laufevent.Controllers
         [SwaggerResponse(200, "User details retrieved successfully.", typeof(object))]
         [SwaggerResponse(404, "User with the specified EduCard number not found.")]
         [SwaggerResponse(500, "Internal Server Error - Database issue or unexpected error.")]
-        public IActionResult GetUserByEduCardNumber(int educardNumber)
+        public IActionResult GetUserByEduCardNumber(double educardNumber)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace Laufevent.Controllers
                                     Id = reader["id"] is DBNull ? 0 : Convert.ToInt32(reader["id"]),
                                     FirstName = reader["firstname"]?.ToString(),
                                     LastName = reader["lastname"]?.ToString(),
-                                    EduCardNumber = reader["educard_number"] is DBNull ? 0 : Convert.ToInt32(reader["educard_number"]),
+                                    EduCardNumber = reader["educard_number"] is DBNull ? 0.0 : Convert.ToDouble(reader["educard_number"]),
                                     SchoolClass = reader["school_class"]?.ToString(),
                                     Organisation = reader["organisation"]?.ToString(),
                                     FastestLap = reader["fastest_lap"] is DBNull ? (int?)null : Convert.ToInt32(reader["fastest_lap"]),
