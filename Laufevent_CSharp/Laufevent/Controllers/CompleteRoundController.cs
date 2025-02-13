@@ -12,24 +12,25 @@ namespace Laufevent.Controllers
     {
         [HttpPost]
         [SwaggerOperation(Summary = "Inserts user information into the database", 
-            Description = "This endpoint inserts the user's ID and scan time into the Rounds table.")]
+            Description = "This endpoint inserts the user's UID and scan time into the Rounds table.")]
         [SwaggerResponse(200, "Data inserted successfully.", typeof(string))]
         [SwaggerResponse(500, "Internal Server Error.")]
         public async Task<IActionResult> InsertUserInformation([FromBody] CompleteRoundVariables userInfo)
         {
             try
             {
-                string formattedTime = DateTime.Now.ToString("HH:mm:ss");
+                DateTime currentTime = DateTime.Now;
 
                 using (var connection = new SqlConnection(ConnectionString.connectionstring))
                 {
                     await connection.OpenAsync();
-                    var query = "INSERT INTO Rounds (ID, Scantime) VALUES (@ID, @Scantime);";
+                    var query = "INSERT INTO Rounds (UID, Scantime) VALUES (@UID, @Scantime);";
 
                     using (var command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.Add("@ID", SqlDbType.Int).Value = userInfo.ID;
-                        command.Parameters.Add("@Scantime", SqlDbType.VarChar).Value = formattedTime;
+                        command.Parameters.Add("@UID", SqlDbType.Float).Value = (float)userInfo.UID;
+
+                        command.Parameters.Add("@Scantime", SqlDbType.DateTime).Value = currentTime;
 
                         var rowsAffected = await command.ExecuteNonQueryAsync();
                         return Ok($"Data inserted successfully. Rows affected: {rowsAffected}");

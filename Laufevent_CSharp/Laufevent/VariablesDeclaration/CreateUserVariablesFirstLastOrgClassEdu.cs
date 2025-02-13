@@ -17,5 +17,5 @@ public class CreateUserVariablesFirstLastOrgClassEdu
     public string school_class { get; set; }
     
     [Required][DefaultValue("")] 
-    public int educard { get; set; }
+    public double educard { get; set; }
 }
