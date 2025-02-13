@@ -71,31 +71,35 @@ def create_user():
         "lastname": lastname_entry.get(),
         "organisation": org_entry.get(),
         "school_class": class_entry.get() if class_value else None,
-        "educard": edu_card_entry.get() if edu_card_value else None
+        "educard": edu_card_entry.get() if edu_card_value else None,
     }
 
     headers = {'Content-Type': 'application/json'}
 
     if class_value and edu_card_value:
-        url = 'https://192.168.68.116:44320/create user that has everything'
-    elif edu_card_value:
-        url = 'https://192.168.68.116:44320/create user that has no educard and no class'
+        url = 'https://192.168.68.116:44320/create-user-that-has-everything'
     elif class_value:
-        url = 'https://192.168.68.116:44320/create user that has no educard'
+        url = 'https://192.168.68.116:44320/create-user-that-has-no-educard'
     else:
-        url = 'https://192.168.68.116:44320/create user that has no educard and no class'
+        url = 'https://192.168.68.116:44320/create-user-that-has-no-educard-and-no-class'
 
     try:
         response = requests.post(url, json=data, headers=headers, verify=False)
-        response_data = response.json()
-        if response.status_code == 200:
+
+        # Check if response has content
+        if response.status_code == 200 and response.text:
+            response_data = response.json()  # Safe to parse JSON now
             user_id = response_data.get('id')
             id_label.config(text=f"Letzte erstellte ID: {user_id}")
             messagebox.showinfo("Erfolg", f"Daten erfolgreich gesendet!\nID: {user_id}")
         else:
-            messagebox.showerror("Fehler", f"Fehler: {response.status_code}\n{response.text}")
-    except Exception as e:
-        messagebox.showerror("Fehler", str(e))
+            messagebox.showerror("Fehler", f"Fehler: {response.status_code}\nKeine Daten zurückgegeben.")
+
+    except requests.exceptions.RequestException as e:
+        messagebox.showerror("Fehler", f"Netzwerkfehler: {str(e)}")
+    except ValueError:
+        messagebox.showerror("Fehler", "Ungültige JSON-Antwort vom Server.")
+
 
 def delete_user_by_id():
     """
