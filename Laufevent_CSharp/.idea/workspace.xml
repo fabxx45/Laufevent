@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7a1061f9-060f-461d-bcfa-9e6b00fa5418" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Laufevent/bin/Debug/net8.0/Laufevent.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/bin/Debug/net8.0/Laufevent.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/bin/Debug/net8.0/Laufevent.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/bin/Debug/net8.0/Laufevent.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/bin/Debug/net8.0/Laufevent.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/bin/Debug/net8.0/Laufevent.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/ref/Laufevent.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/ref/Laufevent.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/refint/Laufevent.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/refint/Laufevent.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/rider.project.model.nuget.info" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2sL4c8iSez3I01qP2wlbCfGBHcc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Fabian/Documents/GitHub/Laufevent",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7a1061f9-060f-461d-bcfa-9e6b00fa5418" name="Changes" comment="" />
+      <created>1738221597911</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1738221597911</updated>
+      <workItem from="1738221598969" duration="275000" />
+      <workItem from="1738221907185" duration="350000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
