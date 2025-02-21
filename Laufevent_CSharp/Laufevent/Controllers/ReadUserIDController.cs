@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Laufevent.Controllers
 {
+    /// <summary>
+    /// Controller for retrieving user information based on the provided user ID.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ReadUserIDController : ControllerBase
@@ -16,8 +19,10 @@ namespace Laufevent.Controllers
         /// <param name="id">The unique ID of the user.</param>
         /// <returns>Returns the user details if found, otherwise a 404 not found error.</returns>
         [HttpGet("{id}")]
-        [SwaggerOperation(Summary = "Get user details by ID", 
-                          Description = "Fetches the complete user information for the given user ID.")]
+        [SwaggerOperation(
+            Summary = "Get user details by ID",
+            Description = "Fetches the complete user information for the given user ID."
+        )]
         [SwaggerResponse(200, "User details retrieved successfully.", typeof(object))]
         [SwaggerResponse(404, "User with the specified ID not found.")]
         [SwaggerResponse(500, "Internal Server Error - Database issue or unexpected error.")]
@@ -43,7 +48,7 @@ namespace Laufevent.Controllers
                                     Id = reader["id"],
                                     FirstName = reader["firstname"],
                                     LastName = reader["lastname"],
-                                    uid = reader["uid"],
+                                    Uid = reader["uid"],
                                     SchoolClass = reader["school_class"],
                                     Organisation = reader["organisation"],
                                     FastestLap = reader["fastest_lap"],

@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace Laufevent.Controllers
 {
+    /// <summary>
+    /// Controller for handling round completion operations.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CompleteRoundController : ControllerBase
     {
+        /// <summary>
+        /// Inserts user information into the database.
+        /// </summary>
+        /// <param name="userInfo">The user information to be inserted.</param>
+        /// <returns>A response indicating the result of the operation.</returns>
         [HttpPost]
         [SwaggerOperation(Summary = "Inserts user information into the database", 
             Description = "This endpoint inserts the user's UID and scan time into the Rounds table.")]
@@ -28,7 +36,7 @@ namespace Laufevent.Controllers
 
                     using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@UID", userInfo.UID); // PostgreSQL supports bigints, use appropriate type
+                        command.Parameters.AddWithValue("@UID", userInfo.uid); // PostgreSQL supports bigints, use appropriate type
                         command.Parameters.AddWithValue("@Scantime", currentTime);
 
                         var rowsAffected = await command.ExecuteNonQueryAsync();

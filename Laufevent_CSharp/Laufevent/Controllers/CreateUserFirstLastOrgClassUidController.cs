@@ -19,7 +19,7 @@ namespace Laufevent.Controllers
         /// <returns>Returns the newly created user ID along with a success message.</returns>
         [HttpPost]
         [SwaggerOperation(Summary = "Create a user with all information", 
-                          Description = "Inserts user data (first name, last name, UID, school class, organization, early starter) into the database.")]
+                          Description = "Inserts user data (first name, last name, uid, school class, organization, early starter) into the database.")]
         [SwaggerResponse(200, "Data inserted successfully.", typeof(object))]
         [SwaggerResponse(400, "Bad Request - Invalid data provided.")]
         [SwaggerResponse(500, "Internal Server Error.")]
@@ -37,11 +37,11 @@ namespace Laufevent.Controllers
 
                     using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@firstname", userInfo.firstname ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@lastname", userInfo.lastname ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@uid", userInfo.uid ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@school_class", userInfo.school_class ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@organisation", userInfo.organisation ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@firstname", userInfo.firstname);
+                        command.Parameters.AddWithValue("@lastname", userInfo.lastname);
+                        command.Parameters.AddWithValue("@uid", userInfo.uid);
+                        command.Parameters.AddWithValue("@school_class", userInfo.school_class);
+                        command.Parameters.AddWithValue("@organisation", userInfo.organisation );
                         command.Parameters.AddWithValue("@early_starter", DBNull.Value); // Adjust if needed
 
                         var newUserId = await command.ExecuteScalarAsync();  // Fetch the newly inserted ID
@@ -60,12 +60,5 @@ namespace Laufevent.Controllers
         }
     }
 
-    public class CreateUserVariablesFirstLastOrgClassUid
-    {
-        public string firstname { get; set; }
-        public string lastname { get; set; }
-        public double? uid { get; set; }
-        public string school_class { get; set; }
-        public string organisation { get; set; }
-    }
+
 }

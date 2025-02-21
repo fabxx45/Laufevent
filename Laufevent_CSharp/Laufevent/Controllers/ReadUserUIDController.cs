@@ -6,22 +6,27 @@ using System.Threading.Tasks;
 
 namespace Laufevent.Controllers
 {
+    /// <summary>
+    /// Controller for retrieving user information based on the provided UID.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ReadUserUIDController : ControllerBase
     {
         /// <summary>
-        /// Retrieves user information based on the provided uid number.
+        /// Retrieves user information based on the provided UID.
         /// </summary>
-        /// <param name="uid">The uid number of the user.</param>
+        /// <param name="uid">The UID of the user.</param>
         /// <returns>Returns the user details if found, otherwise a 404 not found error.</returns>
         [HttpGet]
-        [SwaggerOperation(Summary = "Get user details by EduCard number", 
-                          Description = "Fetches the complete user information for the given EduCard number.")]
+        [SwaggerOperation(
+            Summary = "Get user details by uid",
+            Description = "Fetches the complete user information for the given uid."
+        )]
         [SwaggerResponse(200, "User details retrieved successfully.", typeof(object))]
-        [SwaggerResponse(404, "User with the specified EduCard number not found.")]
+        [SwaggerResponse(404, "User with the specified uid not found.")]
         [SwaggerResponse(500, "Internal Server Error - Database issue or unexpected error.")]
-        public async Task<IActionResult> GetUserByEduCardNumber(double uid)
+        public async Task<IActionResult> GetUserByUID(double uid)
         {
             try
             {
@@ -43,15 +48,15 @@ namespace Laufevent.Controllers
                                     Id = reader["id"] is DBNull ? 0 : Convert.ToInt32(reader["id"]),
                                     FirstName = reader["firstname"]?.ToString(),
                                     LastName = reader["lastname"]?.ToString(),
-                                    EduCardNumber = reader["educard_number"] is DBNull ? 0.0 : Convert.ToDouble(reader["educard_number"]),
+                                    Uid = reader["uid"] is DBNull ? 0.0 : Convert.ToDouble(reader["uid"]),
                                     SchoolClass = reader["school_class"]?.ToString(),
                                     Organisation = reader["organisation"]?.ToString(),
-                                    FastestLap = reader["fastest_lap"] is DBNull ? (int?)null : Convert.ToInt32(reader["fastest_lap"]),
+                                    FastestLap = reader["fastest_lap"] is DBNull ? null : reader.GetTimeSpan(reader.GetOrdinal("fastest_lap")).ToString(@"hh\:mm\:ss"),
                                     EarlyStarter = reader["early_starter"] is DBNull ? (bool?)null : Convert.ToBoolean(reader["early_starter"])
                                 };
                                 return Ok(user);
                             }
-                            return NotFound($"User with EduCard number {uid} not found.");
+                            return NotFound($"User with UID {uid} not found.");
                         }
                     }
                 }

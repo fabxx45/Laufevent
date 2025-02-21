@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Laufevent.Controllers
 {
+    /// <summary>
+    /// Controller for deleting users by their unique ID.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class DeleteUserByIdController : ControllerBase
@@ -16,8 +19,10 @@ namespace Laufevent.Controllers
         /// <param name="id">The ID of the user to be deleted.</param>
         /// <returns>Returns a success or error message based on the outcome of the deletion.</returns>
         [HttpDelete("{id}")]
-        [SwaggerOperation(Summary = "Delete a user by ID", 
-                          Description = "Deletes a user from the database based on their unique user ID.")]
+        [SwaggerOperation(
+            Summary = "Delete a user by ID",
+            Description = "Deletes a user from the database based on their unique user ID."
+        )]
         [SwaggerResponse(200, "User successfully deleted.", typeof(string))]
         [SwaggerResponse(404, "User not found.")]
         [SwaggerResponse(500, "Internal Server Error - Database issue or unexpected error.")]

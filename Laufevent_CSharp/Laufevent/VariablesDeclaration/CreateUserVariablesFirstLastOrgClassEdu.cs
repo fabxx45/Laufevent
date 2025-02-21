@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 namespace Laufevent;
 
-public class CreateUserVariablesFirstLastOrgClassEdu
+public class CreateUserVariablesFirstLastOrgClassUid
 {
     [Required] [DefaultValue("")] 
     public string firstname { get; set; }
