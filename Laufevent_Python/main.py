@@ -20,20 +20,6 @@ Functions:
     - update_ui(): Updates the UI based on the selected operation.
     - clear_all_inputs(): Clears all input fields in the GUI.
 
-Classes:
-    - None
-
-Variables:
-    - root: The main window of the application.
-    - operation_var: Tracks the selected operation (create, delete, update).
-    - id_label: Displays the last created user ID.
-    - id_entry: Entry field for user ID.
-    - firstname_entry, lastname_entry, org_entry, class_entry, uid_entry:
-      Entry fields for user details.
-    - load_button: Button to load user data.
-    - submit_button: Button to submit the form.
-    - clear_button: Button to clear all input fields.
-
 Usage:
     Run the script to launch the GUI. Select an operation (create, delete, update)
     and fill in the necessary fields. Click "Absenden" to send the data to the API.
@@ -75,8 +61,8 @@ def create_user():
         "firstname": firstname_entry.get(),
         "lastname": lastname_entry.get(),
         "organisation": org_entry.get(),
-        "school_class": class_entry.get() if class_value else None,
-        "uid": uid_entry.get() if uid_value else None,
+        "school_class": class_value if class_value else None,
+        "uid": uid_value if uid_value else None,
     }
 
     headers = {'Content-Type': 'application/json'}
@@ -91,15 +77,13 @@ def create_user():
     try:
         response = requests.post(url, json=data, headers=headers, verify=False)
 
-        # Check if response has content
         if response.status_code == 200 and response.text:
-            response_data = response.json()  # Safe to parse JSON now
+            response_data = response.json()
             user_id = response_data.get('id')
             id_label.config(text=f"Letzte erstellte ID: {user_id}")
             messagebox.showinfo("Erfolg", f"Daten erfolgreich gesendet!\nID: {user_id}")
         else:
             messagebox.showerror("Fehler", f"Fehler: {response.status_code}\nKeine Daten zurückgegeben.")
-
     except requests.exceptions.RequestException as e:
         messagebox.showerror("Fehler", f"Netzwerkfehler: {str(e)}")
     except ValueError:
@@ -151,7 +135,7 @@ def update_user_by_id():
         "organisation": org_entry.get() or None
     }
 
-    url = f'https://192.168.68.116:44320/api/UpdateUser?id={user_id}'
+    url = f'https://192.168.68.116:44320/api/ModifyUser/{user_id}'
     headers = {'Content-Type': 'application/json'}
 
     try:
@@ -171,12 +155,10 @@ def load_user_data():
     uid_number = uid_entry.get().strip()
     id_number = id_entry.get().strip()
 
-    # Ensure at least one input is provided
     if not uid_number and not id_number:
         messagebox.showerror("Fehler", "Bitte geben Sie eine ID oder eine UID ein.")
         return
 
-    # Ensure only one input is provided
     if uid_number and id_number:
         messagebox.showerror("Fehler", "Du kannst nur nach einem Parameter suchen (ID oder UID).")
         return
@@ -184,14 +166,14 @@ def load_user_data():
     url = ''
     if uid_number:
         try:
-            uid_number = float(uid_number)  # Ensure valid number
+            uid_number = float(uid_number)
             url = f'https://192.168.68.116:44320/api/ReadUserUID?uid={uid_number}'
         except ValueError:
             messagebox.showerror("Fehler", "Ungültige UID.")
             return
     elif id_number:
         try:
-            id_number = int(id_number)  # Ensure valid integer
+            id_number = int(id_number)
             url = f'https://192.168.68.116:44320/api/ReadUserID/{id_number}'
         except ValueError:
             messagebox.showerror("Fehler", "Ungültige Benutzer-ID.")
@@ -209,13 +191,11 @@ def load_user_data():
                 messagebox.showwarning("Warnung", "Keine Daten gefunden.")
                 return
 
-            # Helper function to replace {} with an empty string
             def clean_value(value):
                 return "" if value == {} else value
 
-            # Populate fields
             id_entry.delete(0, tk.END)
-            id_entry.insert(0, str(clean_value(user_data.get('id', ''))))  # ID field updated
+            id_entry.insert(0, str(clean_value(user_data.get('id', ''))))
 
             firstname_entry.delete(0, tk.END)
             firstname_entry.insert(0, clean_value(user_data.get('firstName', '')))
@@ -262,7 +242,7 @@ def update_ui():
         class_entry.grid()
         uid_label.grid()
         uid_entry.grid()
-        load_button.grid_remove()  # Hide the Load button
+        load_button.grid_remove()
     elif operation_var.get() == 2:  # Delete User
         id_label_entry.grid()
         id_entry.grid()
@@ -276,7 +256,7 @@ def update_ui():
         class_entry.grid_remove()
         uid_label.grid_remove()
         uid_entry.grid_remove()
-        load_button.grid_remove()  # Hide the Load button
+        load_button.grid_remove()
     elif operation_var.get() == 3:  # Update User
         id_label_entry.grid()
         id_entry.grid()
@@ -290,7 +270,7 @@ def update_ui():
         class_entry.grid()
         uid_label.grid()
         uid_entry.grid()
-        load_button.grid()  # Show the Load button
+        load_button.grid()
 
 
 def clear_all_inputs():
@@ -362,7 +342,6 @@ ttk.Radiobutton(root, text="Benutzer erstellen", variable=operation_var, value=1
 ttk.Radiobutton(root, text="Benutzer löschen", variable=operation_var, value=2, style='My.TButton', command=update_ui).grid(row=9, column=1, padx=5, pady=5)
 ttk.Radiobutton(root, text="Benutzer aktualisieren", variable=operation_var, value=3, style='My.TButton', command=update_ui).grid(row=9, column=2, padx=5, pady=5)
 
-
 # Submit button to send data to the API
 submit_button = ttk.Button(root, text="Absenden", command=send_to_api)
 submit_button.grid(row=10, column=1, padx=5, pady=10)
@@ -370,12 +349,11 @@ submit_button.grid(row=10, column=1, padx=5, pady=10)
 # Load button to load user data
 load_button = ttk.Button(root, text="Laden", command=load_user_data)
 load_button.grid(row=10, column=2, padx=5, pady=10)
-load_button.grid_remove()  # Initially hidden
+load_button.grid_remove()
 
 # Clear All button to reset all input fields
 clear_button = ttk.Button(root, text="Clear All", command=clear_all_inputs)
 clear_button.grid(row=10, column=0, padx=5, pady=10)
-
 
 # Initialize the UI based on the selected operation
 update_ui()
