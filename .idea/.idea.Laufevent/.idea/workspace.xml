@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e93d5e12-b78a-4994-9391-9fb806a0e43a" name="Changes" comment="oida geh">
+      <change beforePath="$PROJECT_DIR$/Laufevent/bin/Debug/net8.0/Laufevent.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/bin/Debug/net8.0/Laufevent.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/bin/Debug/net8.0/Laufevent.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/bin/Debug/net8.0/Laufevent.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/bin/Debug/net8.0/Laufevent.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/bin/Debug/net8.0/Laufevent.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/Laufevent.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/ref/Laufevent.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/ref/Laufevent.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/refint/Laufevent.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/refint/Laufevent.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/staticwebassets.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/staticwebassets.build.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/staticwebassets/msbuild.build.Laufevent.props" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Debug/net8.0/staticwebassets/msbuild.build.Laufevent.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Laufevent.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Laufevent.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/Laufevent.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/Laufevent.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laufevent/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Laufevent/obj/rider.project.restore.info" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="1Manuelsen &lt;manuel.hofmarcher27@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;fabxx45&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/fabxx45/Laufevent.git&quot;,
+    &quot;accountId&quot;: &quot;8a494c25-bb92-4484-9042-a9ca5b0af977&quot;
+  }
+}</component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2onyhZyPaFRFH89XDw1hT4H5n2r" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.Laufevent: IIS Express.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.Laufevent: IIS Express">
+    <configuration name="Laufevent: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Laufevent/Laufevent.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="Laufevent: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Laufevent/Laufevent.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="http" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="Laufevent: https" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Laufevent/Laufevent.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="https" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e93d5e12-b78a-4994-9391-9fb806a0e43a" name="Changes" comment="" />
+      <created>1731519754424</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731519754424</updated>
+      <workItem from="1731519756034" duration="2562000" />
+      <workItem from="1731604673347" duration="8796000" />
+      <workItem from="1731771113704" duration="427000" />
+      <workItem from="1731771554334" duration="12530000" />
+      <workItem from="1731786377223" duration="1559000" />
+      <workItem from="1731864402134" duration="165000" />
+      <workItem from="1731864578366" duration="583000" />
+      <workItem from="1731865186485" duration="1674000" />
+      <workItem from="1732139008405" duration="884000" />
+      <workItem from="1735929915090" duration="33000" />
+    </task>
+    <task id="LOCAL-00001" summary="org add back">
+      <option name="closed" value="true" />
+      <created>1731779189357</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1731779189357</updated>
+    </task>
+    <task id="LOCAL-00002" summary="org add back">
+      <option name="closed" value="true" />
+      <created>1731779232106</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731779232106</updated>
+    </task>
+    <task id="LOCAL-00003" summary="org add back">
+      <option name="closed" value="true" />
+      <created>1731779303247</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731779303247</updated>
+    </task>
+    <task id="LOCAL-00004" summary="oida geh">
+      <option name="closed" value="true" />
+      <created>1731785713433</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731785713433</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Rename" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;Laufevent/bin/Debug/net8.0/Laufevent.dll&#10;#&#9;Laufevent/bin/Debug/net8.0/Laufevent.exe&#10;#&#9;Laufevent/bin/Debug/net8.0/Laufevent.pdb&#10;#&#9;Laufevent/obj/Debug/net8.0/Laufevent.AssemblyInfo.cs&#10;#&#9;Laufevent/obj/Debug/net8.0/Laufevent.AssemblyInfoInputs.cache&#10;#&#9;Laufevent/obj/Debug/net8.0/Laufevent.csproj.CoreCompileInputs.cache&#10;#&#9;Laufevent/obj/Debug/net8.0/Laufevent.dll&#10;#&#9;Laufevent/obj/Debug/net8.0/Laufevent.pdb&#10;#&#9;Laufevent/obj/Debug/net8.0/Laufevent.sourcelink.json&#10;#&#9;Laufevent/obj/Debug/net8.0/apphost.exe&#10;#&#9;Laufevent/obj/Debug/net8.0/ref/Laufevent.dll&#10;#&#9;Laufevent/obj/Debug/net8.0/refint/Laufevent.dll&#10;#&#9;Laufevent/obj/rider.project.model.nuget.info&#10;#&#9;Laufevent/obj/rider.project.restore.info" />
+    <MESSAGE value="org add back" />
+    <MESSAGE value="oida geh" />
+    <option name="LAST_COMMIT_MESSAGE" value="oida geh" />
+  </component>
+</project>
