@@ -28,7 +28,7 @@ namespace Laufevent.Controllers
         [SwaggerResponse(200, "Data inserted successfully.", typeof(object))]
         [SwaggerResponse(400, "Bad Request - Invalid data provided.")]
         [SwaggerResponse(500, "Internal Server Error.")]
-        public async Task<IActionResult> InsertUserInformation([FromBody] CreateUserVariablesFirstLastOrgClassUid userInfo)
+        public async Task<IActionResult> InsertUserInformation([FromBody] CreateUserVariablesFirstLastOrgClass userInfo)
         {
             try
             {

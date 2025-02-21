@@ -16,7 +16,7 @@ Functions:
     - create_user(): Sends a POST request to create a new user.
     - delete_user_by_id(): Sends a DELETE request to delete a user by ID.
     - update_user_by_id(): Sends a PUT request to update a user by ID.
-    - load_user_data(): Sends a GET request to load user data by ID or EduCard.
+    - load_user_data(): Sends a GET request to load user data by ID or UID.
     - update_ui(): Updates the UI based on the selected operation.
     - clear_all_inputs(): Clears all input fields in the GUI.
 
@@ -28,7 +28,7 @@ Variables:
     - operation_var: Tracks the selected operation (create, delete, update).
     - id_label: Displays the last created user ID.
     - id_entry: Entry field for user ID.
-    - firstname_entry, lastname_entry, org_entry, class_entry, edu_card_entry:
+    - firstname_entry, lastname_entry, org_entry, class_entry, uid_entry:
       Entry fields for user details.
     - load_button: Button to load user data.
     - submit_button: Button to submit the form.
@@ -69,24 +69,24 @@ def create_user():
     to the appropriate API endpoint based on the presence of optional fields.
     """
     class_value = class_entry.get()
-    edu_card_value = edu_card_entry.get()
+    uid_value = uid_entry.get()
 
     data = {
         "firstname": firstname_entry.get(),
         "lastname": lastname_entry.get(),
         "organisation": org_entry.get(),
         "school_class": class_entry.get() if class_value else None,
-        "educard": edu_card_entry.get() if edu_card_value else None,
+        "uid": uid_entry.get() if uid_value else None,
     }
 
     headers = {'Content-Type': 'application/json'}
 
-    if class_value and edu_card_value:
+    if class_value and uid_value:
         url = 'https://192.168.68.116:44320/create-user-that-has-everything'
     elif class_value:
-        url = 'https://192.168.68.116:44320/create-user-that-has-no-educard'
+        url = 'https://192.168.68.116:44320/create-user-that-has-no-uid'
     else:
-        url = 'https://192.168.68.116:44320/create-user-that-has-no-educard-and-no-class'
+        url = 'https://192.168.68.116:44320/create-user-that-has-no-uid-and-no-class'
 
     try:
         response = requests.post(url, json=data, headers=headers, verify=False)
@@ -146,7 +146,7 @@ def update_user_by_id():
     data = {
         "firstName": firstname_entry.get() or None,
         "lastName": lastname_entry.get() or None,
-        "eduCardNumber": edu_card_entry.get() or None,
+        "uid": uid_entry.get() or None,
         "schoolClass": class_entry.get() or None,
         "organisation": org_entry.get() or None
     }
@@ -166,33 +166,33 @@ def update_user_by_id():
 
 def load_user_data():
     """
-    Sends a GET request to load user data by EduCard or ID.
+    Sends a GET request to load user data by UID or ID.
     """
-    edu_card_number = edu_card_entry.get().strip()
+    uid_number = uid_entry.get().strip()
     id_number = id_entry.get().strip()
 
     # Ensure at least one input is provided
-    if not edu_card_number and not id_number:
-        messagebox.showerror("Fehler", "Bitte geben Sie eine ID oder eine EduCard-Nummer ein.")
+    if not uid_number and not id_number:
+        messagebox.showerror("Fehler", "Bitte geben Sie eine ID oder eine UID ein.")
         return
 
     # Ensure only one input is provided
-    if edu_card_number and id_number:
-        messagebox.showerror("Fehler", "Du kannst nur nach einem Parameter suchen (ID oder EduCard).")
+    if uid_number and id_number:
+        messagebox.showerror("Fehler", "Du kannst nur nach einem Parameter suchen (ID oder UID).")
         return
 
     url = ''
-    if edu_card_number:
+    if uid_number:
         try:
-            edu_card_number = float(edu_card_number)  # Ensure valid number
-            url = f'https://192.168.68.116:44320/api/ReadUserEdu?educardNumber={edu_card_number}'
+            uid_number = float(uid_number)  # Ensure valid number
+            url = f'https://192.168.68.116:44320/api/ReadUserUID?uid={uid_number}'
         except ValueError:
-            messagebox.showerror("Fehler", "Ungültige EduCard-Nummer.")
+            messagebox.showerror("Fehler", "Ungültige UID.")
             return
     elif id_number:
         try:
             id_number = int(id_number)  # Ensure valid integer
-            url = f'https://192.168.68.116:44320/api/ReadUserID?id={id_number}'
+            url = f'https://192.168.68.116:44320/api/ReadUserID/{id_number}'
         except ValueError:
             messagebox.showerror("Fehler", "Ungültige Benutzer-ID.")
             return
@@ -229,8 +229,8 @@ def load_user_data():
             class_entry.delete(0, tk.END)
             class_entry.insert(0, clean_value(user_data.get('schoolClass', '')))
 
-            edu_card_entry.delete(0, tk.END)
-            edu_card_entry.insert(0, str(clean_value(user_data.get('eduCardNumber', ''))))
+            uid_entry.delete(0, tk.END)
+            uid_entry.insert(0, str(clean_value(user_data.get('uid', ''))))
 
             messagebox.showinfo("Erfolg", "Daten erfolgreich geladen!")
         elif response.status_code == 400:
@@ -240,9 +240,6 @@ def load_user_data():
 
     except Exception as e:
         messagebox.showerror("Fehler", str(e))
-
-
-
 
 
 def update_ui():
@@ -263,8 +260,8 @@ def update_ui():
         org_entry.grid()
         class_label.grid()
         class_entry.grid()
-        edu_card_label.grid()
-        edu_card_entry.grid()
+        uid_label.grid()
+        uid_entry.grid()
         load_button.grid_remove()  # Hide the Load button
     elif operation_var.get() == 2:  # Delete User
         id_label_entry.grid()
@@ -277,8 +274,8 @@ def update_ui():
         org_entry.grid_remove()
         class_label.grid_remove()
         class_entry.grid_remove()
-        edu_card_label.grid_remove()
-        edu_card_entry.grid_remove()
+        uid_label.grid_remove()
+        uid_entry.grid_remove()
         load_button.grid_remove()  # Hide the Load button
     elif operation_var.get() == 3:  # Update User
         id_label_entry.grid()
@@ -291,8 +288,8 @@ def update_ui():
         org_entry.grid()
         class_label.grid()
         class_entry.grid()
-        edu_card_label.grid()
-        edu_card_entry.grid()
+        uid_label.grid()
+        uid_entry.grid()
         load_button.grid()  # Show the Load button
 
 
@@ -305,7 +302,7 @@ def clear_all_inputs():
     lastname_entry.delete(0, tk.END)
     org_entry.delete(0, tk.END)
     class_entry.delete(0, tk.END)
-    edu_card_entry.delete(0, tk.END)
+    uid_entry.delete(0, tk.END)
     id_label.config(text="Letzte erstellte ID: Keine")
 
 
@@ -351,11 +348,11 @@ class_label.grid(row=5, column=0, padx=10, pady=5)
 class_entry = tk.Entry(root)
 class_entry.grid(row=5, column=1, padx=10, pady=5)
 
-edu_card_label = tk.Label(root, text="Edu Card:")
-edu_card_label.grid(row=6, column=0, padx=10, pady=5)
+uid_label = tk.Label(root, text="UID:")
+uid_label.grid(row=6, column=0, padx=10, pady=5)
 
-edu_card_entry = tk.Entry(root)
-edu_card_entry.grid(row=6, column=1, padx=10, pady=5)
+uid_entry = tk.Entry(root)
+uid_entry.grid(row=6, column=1, padx=10, pady=5)
 
 # Radio buttons for selecting the operation
 style = ttk.Style()

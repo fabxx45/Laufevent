@@ -26,7 +26,7 @@ namespace Laufevent.Controllers
         [SwaggerResponse(200, "Rounds count successfully retrieved.", typeof(object))]
         [SwaggerResponse(404, "No rounds found for the given user ID.")]
         [SwaggerResponse(500, "Internal Server Error - Database issue or unexpected error.")]
-        public async Task<IActionResult> GetRoundsCountById(int uid)
+        public async Task<IActionResult> GetRoundsCountById(double uid)
         {
             try
             {
