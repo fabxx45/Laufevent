@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Data.SqlClient;
+using System;
+using System.Threading.Tasks;
 
 namespace Laufevent.Controllers
 {
@@ -13,44 +15,39 @@ namespace Laufevent.Controllers
         /// </summary>
         /// <param name="id">The ID of the user whose rounds count you want to retrieve.</param>
         /// <returns>Returns the count of rounds for the specified user ID or an error message if no rounds exist.</returns>
-        [HttpGet]
+        [HttpGet("{id}")]
         [SwaggerOperation(Summary = "Get the rounds count for a given user ID", 
                           Description = "Fetches the total number of rounds for a specific user ID.")]
         [SwaggerResponse(200, "Rounds count successfully retrieved.", typeof(object))]
         [SwaggerResponse(404, "No rounds found for the given user ID.")]
         [SwaggerResponse(500, "Internal Server Error - Database issue or unexpected error.")]
-        public IActionResult GetRoundsCountById(int id)
+        public async Task<IActionResult> GetRoundsCountById(int id)
         {
             try
             {
-                using (var connection = new SqlConnection(ConnectionString.connectionstring))
+                using (var connection = new NpgsqlConnection(ConnectionString.connectionstring))
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                     var query = "SELECT COUNT(*) AS RoundsCount FROM Rounds WHERE id = @id";
 
-                    using (var command = new SqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@id", id);
 
-                        using (var reader = command.ExecuteReader())
+                        var roundsCount = await command.ExecuteScalarAsync();
+
+                        if (roundsCount != null && Convert.ToInt32(roundsCount) > 0)
                         {
-                            if (reader.Read())
-                            {
-                                var result = new
-                                {
-                                    RoundsCount = reader["RoundsCount"]
-                                };
-                                return Ok(result);
-                            }
-                            else
-                            {
-                                return NotFound($"No entries found for ID {id}.");
-                            }
+                            return Ok(new { RoundsCount = roundsCount });
+                        }
+                        else
+                        {
+                            return NotFound($"No entries found for ID {id}.");
                         }
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (NpgsqlException ex)
             {
                 return StatusCode(500, $"Database error: {ex.Message}");
             }

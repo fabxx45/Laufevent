@@ -1,17 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Data.SqlClient;
+using System;
+using System.Threading.Tasks;
 
 namespace Laufevent.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReadUserEduController : ControllerBase
+    public class ReadUserUIDController : ControllerBase
     {
         /// <summary>
-        /// Retrieves user information based on the provided EduCard number.
+        /// Retrieves user information based on the provided uid number.
         /// </summary>
-        /// <param name="educardNumber">The EduCard number of the user.</param>
+        /// <param name="uid">The uid number of the user.</param>
         /// <returns>Returns the user details if found, otherwise a 404 not found error.</returns>
         [HttpGet]
         [SwaggerOperation(Summary = "Get user details by EduCard number", 
@@ -19,22 +21,22 @@ namespace Laufevent.Controllers
         [SwaggerResponse(200, "User details retrieved successfully.", typeof(object))]
         [SwaggerResponse(404, "User with the specified EduCard number not found.")]
         [SwaggerResponse(500, "Internal Server Error - Database issue or unexpected error.")]
-        public IActionResult GetUserByEduCardNumber(double educardNumber)
+        public async Task<IActionResult> GetUserByEduCardNumber(double uid)
         {
             try
             {
-                using (var connection = new SqlConnection(ConnectionString.connectionstring))
+                using (var connection = new NpgsqlConnection(ConnectionString.connectionstring))
                 {
-                    connection.Open();
-                    const string query = "SELECT * FROM Userinformation WHERE educard_number = @educardNumber";
+                    await connection.OpenAsync();
+                    const string query = "SELECT * FROM Userinformation WHERE uid = @uid";
 
-                    using (var command = new SqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@educardNumber", educardNumber);
+                        command.Parameters.AddWithValue("@uid", uid);
 
-                        using (var reader = command.ExecuteReader())
+                        using (var reader = await command.ExecuteReaderAsync())
                         {
-                            if (reader.Read())
+                            if (await reader.ReadAsync())
                             {
                                 var user = new
                                 {
@@ -49,12 +51,12 @@ namespace Laufevent.Controllers
                                 };
                                 return Ok(user);
                             }
-                            return NotFound($"User with EduCard number {educardNumber} not found.");
+                            return NotFound($"User with EduCard number {uid} not found.");
                         }
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (NpgsqlException ex)
             {
                 return StatusCode(500, $"Database error: {ex.Message}");
             }

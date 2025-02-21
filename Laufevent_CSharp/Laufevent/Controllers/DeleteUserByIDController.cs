@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Data.SqlClient;
+using System;
+using System.Threading.Tasks;
 
 namespace Laufevent.Controllers
 {
@@ -19,21 +21,21 @@ namespace Laufevent.Controllers
         [SwaggerResponse(200, "User successfully deleted.", typeof(string))]
         [SwaggerResponse(404, "User not found.")]
         [SwaggerResponse(500, "Internal Server Error - Database issue or unexpected error.")]
-        public IActionResult DeleteUserById(int id)
+        public async Task<IActionResult> DeleteUserById(int id)
         {
             try
             {
-                using (var connection = new SqlConnection(ConnectionString.connectionstring))
+                using (var connection = new NpgsqlConnection(ConnectionString.connectionstring))
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                     var query = "DELETE FROM Userinformation WHERE id = @id";
 
-                    using (var command = new SqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@id", id);
 
                         // Execute the delete command and check how many rows were affected
-                        int rowsAffected = command.ExecuteNonQuery();
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
 
                         if (rowsAffected > 0)
                         {
@@ -46,7 +48,7 @@ namespace Laufevent.Controllers
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (NpgsqlException ex)
             {
                 return StatusCode(500, $"Database error: {ex.Message}");
             }

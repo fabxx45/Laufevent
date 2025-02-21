@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Data.SqlClient;
+using System;
+using System.Threading.Tasks;
 
 namespace Laufevent.Controllers
 {
@@ -20,30 +22,30 @@ namespace Laufevent.Controllers
         [SwaggerResponse(200, "User details retrieved successfully.", typeof(object))]
         [SwaggerResponse(404, "User with the specified first and last name not found.")]
         [SwaggerResponse(500, "Internal Server Error - Database issue or unexpected error.")]
-        public IActionResult GetUserByName([FromQuery] string firstName, [FromQuery] string lastName)
+        public async Task<IActionResult> GetUserByName([FromQuery] string firstName, [FromQuery] string lastName)
         {
             try
             {
-                using (var connection = new SqlConnection(ConnectionString.connectionstring))
+                using (var connection = new NpgsqlConnection(ConnectionString.connectionstring))
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                     var query = "SELECT * FROM Userinformation WHERE firstname = @firstName AND lastname = @lastName";
 
-                    using (var command = new SqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@firstName", firstName);
                         command.Parameters.AddWithValue("@lastName", lastName);
 
-                        using (var reader = command.ExecuteReader())
+                        using (var reader = await command.ExecuteReaderAsync())
                         {
-                            if (reader.Read())
+                            if (await reader.ReadAsync())
                             {
                                 var user = new
                                 {
                                     Id = reader["id"],
                                     FirstName = reader["firstname"],
                                     LastName = reader["lastname"],
-                                    EduCardNumber = reader["educard_number"],
+                                    uid = reader["uid"],
                                     SchoolClass = reader["school_class"],
                                     Organisation = reader["organisation"],
                                     FastestLap = reader["fastest_lap"],
@@ -59,7 +61,7 @@ namespace Laufevent.Controllers
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (NpgsqlException ex)
             {
                 return StatusCode(500, $"Database error: {ex.Message}");
             }

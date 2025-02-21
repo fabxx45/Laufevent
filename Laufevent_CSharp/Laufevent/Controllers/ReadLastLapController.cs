@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Data.SqlClient;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Laufevent.Controllers
 {
@@ -15,33 +16,33 @@ namespace Laufevent.Controllers
         /// </summary>
         /// <param name="id">The ID of the user to fetch the lap times for.</param>
         /// <returns>Returns the lap duration (time difference between the last two laps) or an error message.</returns>
-        [HttpGet]
+        [HttpGet("{id}")]
         [SwaggerOperation(Summary = "Get the lap duration based on the last two scan times",
                           Description = "Fetches the last two scan times for the given ID and calculates the lap duration.")]
         [SwaggerResponse(200, "Lap duration successfully calculated.", typeof(object))]
         [SwaggerResponse(404, "Not enough data to calculate lap duration.")]
         [SwaggerResponse(500, "Internal Server Error - Database issue or unexpected error.")]
-        public IActionResult GetLastLapById(int id)
+        public async Task<IActionResult> GetLastLapById(int id)
         {
             try
             {
-                using (var connection = new SqlConnection(ConnectionString.connectionstring))
+                using (var connection = new NpgsqlConnection(ConnectionString.connectionstring))
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
 
-                    var query = @"SELECT TOP 2 Scantime FROM Rounds WHERE id = @id ORDER BY Scantime DESC";
+                    var query = @"SELECT Scantime FROM Rounds WHERE id = @id ORDER BY Scantime DESC LIMIT 2";
 
-                    using (var command = new SqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@id", id);
 
-                        using (var reader = command.ExecuteReader())
+                        using (var reader = await command.ExecuteReaderAsync())
                         {
-                            var times = new List<TimeSpan>();
+                            var times = new List<DateTime>();
 
-                            while (reader.Read())
+                            while (await reader.ReadAsync())
                             {
-                                times.Add((TimeSpan)reader["Scantime"]);
+                                times.Add(reader.GetDateTime(0));
                             }
 
                             if (times.Count < 2)
@@ -62,7 +63,7 @@ namespace Laufevent.Controllers
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (NpgsqlException ex)
             {
                 return StatusCode(500, $"Database error: {ex.Message}");
             }

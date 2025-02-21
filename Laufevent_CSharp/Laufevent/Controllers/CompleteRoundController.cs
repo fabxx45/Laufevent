@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Data;
-using System.Data.SqlClient;
+using System;
 using System.Threading.Tasks;
 
 namespace Laufevent.Controllers
@@ -19,25 +19,24 @@ namespace Laufevent.Controllers
         {
             try
             {
-                DateTime currentTime = DateTime.Now;
+                DateTime currentTime = DateTime.UtcNow; // Use UTC for consistency
 
-                using (var connection = new SqlConnection(ConnectionString.connectionstring))
+                using (var connection = new NpgsqlConnection(ConnectionString.connectionstring))
                 {
                     await connection.OpenAsync();
                     var query = "INSERT INTO Rounds (UID, Scantime) VALUES (@UID, @Scantime);";
 
-                    using (var command = new SqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, connection))
                     {
-                        command.Parameters.Add("@UID", SqlDbType.Float).Value = (float)userInfo.UID;
-
-                        command.Parameters.Add("@Scantime", SqlDbType.DateTime).Value = currentTime;
+                        command.Parameters.AddWithValue("@UID", userInfo.UID); // PostgreSQL supports bigints, use appropriate type
+                        command.Parameters.AddWithValue("@Scantime", currentTime);
 
                         var rowsAffected = await command.ExecuteNonQueryAsync();
                         return Ok($"Data inserted successfully. Rows affected: {rowsAffected}");
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (NpgsqlException ex)
             {
                 return StatusCode(500, $"Database error: {ex.Message}");
             }

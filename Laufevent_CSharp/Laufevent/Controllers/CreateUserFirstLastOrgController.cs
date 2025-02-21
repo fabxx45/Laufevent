@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Data.SqlClient;
+using System;
+using System.Threading.Tasks;
 
 namespace Laufevent.Controllers
 {
@@ -8,48 +10,44 @@ namespace Laufevent.Controllers
     [ApiController]
     public class CreateUserFirstLastOrgController : ControllerBase
     {
-        private int? educard_number = null;
-        private bool early_starter = false;
-        private string school_class = null;
-
         /// <summary>
-        /// Inserts a new user without an educard number and class.
+        /// Inserts a new user without an educard number and school class.
         /// </summary>
         /// <param name="userInfo">User information (first name, last name, organization, etc.)</param>
         /// <returns>Returns the newly created user ID along with a success message.</returns>
         [HttpPost]
-        [SwaggerOperation(Summary = "Create a user without an educard and class", 
+        [SwaggerOperation(Summary = "Create a user without an educard and school class", 
                           Description = "Inserts user data (first name, last name, organization) into the database without an educard number and school class.")]
         [SwaggerResponse(200, "Data inserted successfully.", typeof(object))]
         [SwaggerResponse(400, "Bad Request - Invalid data provided.")]
         [SwaggerResponse(500, "Internal Server Error.")]
-        public IActionResult InsertUserInformation([FromBody] CreateUserVariablesFirstLastOrg userInfo)
+        public async Task<IActionResult> InsertUserInformation([FromBody] CreateUserVariablesFirstLastOrg userInfo)
         {
             try
             {
-                using (var connection = new SqlConnection(ConnectionString.connectionstring))
+                using (var connection = new NpgsqlConnection(ConnectionString.connectionstring))
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                     var query = @"
-                        INSERT INTO Userinformation (firstname, lastname, educard_number, school_class, organisation, early_starter) 
-                        VALUES (@firstname, @lastname, @educard_number, @school_class, @organisation, @early_starter);
-                        SELECT SCOPE_IDENTITY();";
+                        INSERT INTO Userinformation (firstname, lastname, uid, school_class, organisation, early_starter) 
+                        VALUES (@firstname, @lastname, @uid, @school_class, @organisation, @early_starter)
+                        RETURNING id;";  // PostgreSQL uses RETURNING instead of SCOPE_IDENTITY()
 
-                    using (var command = new SqlCommand(query, connection))
+                    using (var command = new NpgsqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@firstname", userInfo.firstname);
                         command.Parameters.AddWithValue("@lastname", userInfo.lastname);
-                        command.Parameters.AddWithValue("@educard_number", DBNull.Value);  // No educard number
+                        command.Parameters.AddWithValue("@uid", DBNull.Value);  // No educard number
                         command.Parameters.AddWithValue("@school_class", DBNull.Value);    // No school class
                         command.Parameters.AddWithValue("@early_starter", DBNull.Value);   // No early starter info
                         command.Parameters.AddWithValue("@organisation", userInfo.organisation);
 
-                        var newId = command.ExecuteScalar();  // Fetch the newly inserted ID
+                        var newId = await command.ExecuteScalarAsync();  // Fetch the newly inserted ID
                         return Ok(new { Id = newId, Message = "Data inserted successfully." });
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (NpgsqlException ex)
             {
                 return StatusCode(500, $"Database error: {ex.Message}");
             }

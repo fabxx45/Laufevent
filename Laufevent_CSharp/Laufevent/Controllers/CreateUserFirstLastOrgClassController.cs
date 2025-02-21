@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Data.SqlClient;
+using System;
+using System.Threading.Tasks;
 
 namespace Laufevent.Controllers
 {
@@ -22,34 +24,36 @@ namespace Laufevent.Controllers
         [SwaggerResponse(200, "Data inserted successfully.", typeof(object))]
         [SwaggerResponse(400, "Bad Request - Invalid data provided.")]
         [SwaggerResponse(500, "Internal Server Error.")]
-        public IActionResult InsertUserInformation([FromBody] CreateUserVariablesFirstLastOrgClass userInfo)
+        public async Task<IActionResult> InsertUserInformation([FromBody] CreateUserVariablesFirstLastOrgClass userInfo)
         {
             try
             {
-                using (var connection = new SqlConnection(ConnectionString.connectionstring))
+                using (var connection = new NpgsqlConnection(ConnectionString.connectionstring))
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
+                    
                     var query = @"
-                        INSERT INTO Userinformation (firstname, lastname, educard_number, school_class, organisation, early_starter) 
-                        VALUES (@firstname, @lastname, @educard_number, @school_class, @organisation, @early_starter);
-                        SELECT SCOPE_IDENTITY();"; 
-                    using (var command = new SqlCommand(query, connection))
+                        INSERT INTO Userinformation (firstname, lastname, uid, school_class, organisation, early_starter) 
+                        VALUES (@firstname, @lastname, @uid, @school_class, @organisation, @early_starter) 
+                        RETURNING id;";  // PostgreSQL uses RETURNING instead of SCOPE_IDENTITY()
+
+                    using (var command = new NpgsqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@firstname", userInfo.firstname);
                         command.Parameters.AddWithValue("@lastname", userInfo.lastname);
-                        command.Parameters.AddWithValue("@educard_number", DBNull.Value);  // No educard number
+                        command.Parameters.AddWithValue("@uid", DBNull.Value); // No uid number
                         command.Parameters.AddWithValue("@school_class", userInfo.school_class);
-                        command.Parameters.AddWithValue("@early_starter", DBNull.Value);   // No early starter info
+                        command.Parameters.AddWithValue("@early_starter", early_starter);  // No early starter info
                         command.Parameters.AddWithValue("@organisation", userInfo.organisation);
 
-                        var newUserId = command.ExecuteScalar();  // Fetch the newly inserted ID
-                        
+                        var newUserId = await command.ExecuteScalarAsync(); // Fetch the newly inserted ID
+
                         // Return the ID along with a success message
                         return Ok(new { Id = newUserId, Message = "Data inserted successfully." });
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (NpgsqlException ex)
             {
                 return StatusCode(500, $"Database error: {ex.Message}");
             }
