@@ -5,6 +5,8 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt
 import requests
+from PyQt5.QtWidgets import QSizePolicy
+
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -95,6 +97,20 @@ class ApiDataInputForm(QMainWindow):
         # Initialize UI
         self.update_ui(1)
 
+        self.operation_group.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+
+    class ApiDataInputForm(QMainWindow):
+        def __init__(self):
+            # ... (existing code)
+
+            # Add ID input field to the layout
+            self.layout.addWidget(self.id_label)
+            self.layout.addWidget(self.id_entry)
+
+            # Store the layout item for the ID entry
+            self.id_entry_layout_item = self.layout.itemAt(self.layout.count() - 1)
+
+            # ... (rest of existing code)
     def center(self):
         """Center the window on the screen."""
         qr = self.frameGeometry()
@@ -116,7 +132,7 @@ class ApiDataInputForm(QMainWindow):
                 border-radius: 10px;
                 margin-top: 20px;
                 padding-top: 20px;
-                padding-bottom: 20px;
+                padding-bottom: 20px; 
             }
             QLabel {
                 font-size: 25px;
